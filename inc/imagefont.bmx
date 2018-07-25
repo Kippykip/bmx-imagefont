@@ -1,22 +1,8 @@
-Rem
-bbdoc: imagefont
-End Rem
-Module kippykip.imagefont
-ModuleInfo "Version: 0.2"
-ModuleInfo "Author: Kippykip - http://kippykip.com"
-ModuleInfo "License: Do whatever you want, I don't care."
+'Version: 0.2
+'Author: Kippykip - http://kippykip.com
+'License: Do whatever you want, I don't care.
 
-Import BRL.GLMax2D
-Import BRL.Retro
-Import BRL.PNGLoader
-Import BRL.BMPLoader
-Import BRL.TGALoader
-Import BRL.JPGLoader
-
-
-Rem
-bbdoc: The main unicode type
-End Rem
+'The main unicode type
 Type TUniFont
 	Field Font:TImage[255]	'Unicode Type ID image storage basically
 	Field FontFilePrefix:String 'What file prefix before the two HEX letters? E.g. "unicode_page_"
@@ -26,9 +12,7 @@ Type TUniFont
 	Field FontHeight:Int 'How high is each letter in the font?
 	
 	'This little bit here lets me only load unicode pages required, the more crazzzy diverse text you draw, the more fonts files it loads in the array overtime.
-	Rem
-	bbdoc: Return a unicode font page as a TImage
-	End Rem
+	'Basically returns a unicode font page as a TImage
 	Function GetUniFont:TImage(TMP_Font:TUniFont, TMP_ID:Byte)
 		'If the font image is already loaded
 		If(TMP_Font.Font[TMP_ID])
@@ -42,10 +26,8 @@ Type TUniFont
 	End Function
 	
 	'The main drawing functions
-	
-	Rem
-	bbdoc: Draws text from a bank loaded from a unicode .TXT file
-	End Rem
+
+	'Draws text from a bank loaded from a unicode .TXT file
 	Method DrawTextBank(TMP_TextBank:TBank, TMP_X:Float = 0, TMP_Y:Float = 0, TMP_XSpacing:Float = 1, TMP_YSpacing:Float = 1) 
 		Local LineCount:Int = 0	'Multilines
 		Local CharSkip:Int = 0 'Basically scrolls the X position backwards, it's used on multilines
@@ -78,9 +60,7 @@ Type TUniFont
 		Next
 	End Method
 	
-	Rem
-	bbdoc: Draws plain unicode text from a quoted string.
-	End Rem
+	'Draws plain unicode text from a quoted string.
 	Method DrawText(Text:String, TMP_X:Float, TMP_Y:Float, TMP_XSpacing:Float = 1, TMP_YSpacing:Float = 1) 
 		Local LineCount:Int = 0	'Multilines
 		Local CharSkip:Int = 0 'Basically scrolls the X position backwards, it's used on multilines
@@ -105,9 +85,11 @@ Type TUniFont
 	End Method
 End Type
 
-Rem
-bbdoc: Function to load Unicode Fonts themselves.<br>Example: <br>Global CoolFont:TUniFont = LoadUniFont("coolfont", "page_", 16, 32, ".png")<br>Will load something like: "coolfont\page_00.png".<br> 'Incbin::' is also supported if you put it in the 'TMP_FolderPath' variable. 
-End Rem
+'Function to load Unicode Fonts themselves.
+'Example: 
+'Global CoolFont:TUniFont = LoadUniFont("coolfont", "page_", 16, 32, ".png")
+'Will load something like: "coolfont\page_00.png".
+'"Incbin::" is also supported if you put it in the 'TMP_FolderPath' variable. 
 Function LoadUniFont:TUniFont(TMP_FolderPath:String, TMP_FilePrefix:String, TMP_CellWidth:Int, TMP_CellHeight:Int, TMP_FileType:String = ".png")
 	Local Font:TUniFont = New TUniFont
 	Font.FontFolderPath = TMP_FolderPath
