@@ -39,7 +39,7 @@ Type TUniFont
 		'Also since there's a two byte header at the start, skip 2 bytes
 		'And since we're counting from 0 we gotta take away 1 at the end of it all.
 		'Wew, that's a lot of effort just to count the letters in a unicode file
-		For Local TMP_Count:Int = 0 To (BankSize(TMP_TextBank) - 2) / 2 - 1
+		For Local TMP_Count:Size_T = 0 To (BankSize(TMP_TextBank) - 2) / 2 - 1
 			Local TMP_Type:Byte = PeekByte(TMP_TextBank, 3 + (TMP_Count * 2)) 'Which unicode png does this particular letter need?
 			Local TMP_Font:TImage = Self.GetUniFont(Self, TMP_Type:Byte) 'Store the font needed in a var so we can use it below
 			Local TMP_Letter:Byte = PeekByte(TMP_TextBank, 2 + (TMP_Count * 2)) 'What letter/symbol is it in the index?
