@@ -1,5 +1,5 @@
 # bmx-imagefont
-Version: 0.1 
+Version: 0.1
 Author: Kippykip - http://kippykip.com 
 License: Do whatever you want, I don't care. - "The Unlicence"
 
